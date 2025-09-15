@@ -20,6 +20,13 @@ app.use(cors());
 app.use(express.json());
 
 // Health check endpoint
+
+app.get("/", (req, res) => {
+    res.send({
+        activeStatus: true,
+        error: false
+    })
+})
 app.get("/health", (req, res) => {
     res.json({ status: "ok" });
 });
@@ -92,6 +99,7 @@ const connectDB = async () => {
 
 // Connect to database
 connectDB();
+
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
